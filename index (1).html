@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>To my baby</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Nunito:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --blush: #fde9ec;
+    --rose: #d9667f;
+    --deep: #7a2a43;
+    --paper: #fffaf4;
+    --line: #f0cfd5;
+    --green: #2f5d46;
+    --ink: #4a2a35;
+    --lh: 2.3rem;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; min-height: 100%; }
+  body {
+    background: radial-gradient(circle at 20% 10%, #fff3f5 0, var(--blush) 55%, #f9d5dc 100%);
+    color: var(--ink);
+    font-family: "Nunito", system-ui, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    padding: 1.2rem 1rem 6rem;
+    overflow-x: hidden;
+  }
+  .hearts { position: fixed; inset: 0; pointer-events: none; overflow: hidden; }
+  .hearts span {
+    position: absolute; bottom: -2rem; color: var(--rose); opacity: .35;
+    animation: rise linear infinite;
+  }
+  @keyframes rise { to { transform: translateY(-110vh) rotate(20deg); opacity: 0; } }
+  @media (prefers-reduced-motion: reduce) { .hearts { display: none; } }
+
+  .book {
+    position: relative; width: 100%; max-width: 32rem;
+    background: var(--paper);
+    border-left: 1.1rem solid var(--green);
+    border-radius: .4rem 1.2rem 1.2rem .4rem;
+    box-shadow: 0 .8rem 2rem rgba(122,42,67,.18);
+    padding: 1.6rem 1.4rem 2rem;
+    align-self: flex-start;
+  }
+  .book::after { /* bookmark ribbon */
+    content: ""; position: absolute; top: -.2rem; right: 1.6rem;
+    width: .9rem; height: 3rem; background: var(--rose);
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 80%, 0 100%);
+  }
+  .page { display: none; }
+  .page.on { display: block; animation: turn .45s ease; }
+  @keyframes turn { from { opacity: 0; transform: translateX(14px); } to { opacity: 1; transform: none; } }
+  @media (prefers-reduced-motion: reduce) { .page.on { animation: none; } }
+
+  .tag { font-family: "Caveat", cursive; color: var(--rose); font-size: 1.4rem; margin: 0 0 .2rem; }
+  h1, h2 {
+    font-family: "Caveat", cursive; font-weight: 700; color: var(--deep);
+    line-height: 1; margin: 0 0 1rem;
+  }
+  h1 { font-size: clamp(3.2rem, 15vw, 4.6rem); }
+  h2 { font-size: 2.6rem; }
+  .plea {
+    font-family: "Caveat", cursive; font-size: 2.3rem; color: var(--rose);
+    margin: 0 0 1.4rem;
+  }
+
+  .lined {
+    font-family: "Caveat", cursive; font-weight: 500; font-size: 1.65rem;
+    line-height: var(--lh); color: var(--ink);
+    background: repeating-linear-gradient(transparent 0, transparent calc(var(--lh) - 1px), var(--line) calc(var(--lh) - 1px), var(--line) var(--lh));
+    margin: 1rem 0 1.4rem; padding: 0 .2rem;
+  }
+  .lined p { margin: 0; }
+  .lined p + p { margin-top: var(--lh); }
+
+  /* photo and video slots */
+  .polaroid {
+    position: relative; background: #fff; padding: .6rem .6rem 2.2rem;
+    box-shadow: 0 .3rem .9rem rgba(122,42,67,.2); border-radius: .2rem;
+    width: min(100%, 15rem); margin: 1rem auto; transform: rotate(-2deg);
+  }
+  .polaroid:nth-child(even) { transform: rotate(2deg); }
+  .polaroid .box {
+    position: relative; aspect-ratio: 1; background: var(--blush);
+    display: grid; place-items: center; overflow: hidden;
+  }
+  .polaroid .ph {
+    font-family: "Caveat", cursive; font-size: 1.3rem; color: var(--rose);
+    text-align: center; padding: .6rem;
+  }
+  .polaroid img, .polaroid video {
+    position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; background: #000;
+  }
+  .polaroid figcaption {
+    position: absolute; left: 0; right: 0; bottom: .45rem; text-align: center;
+    font-family: "Caveat", cursive; font-size: 1.3rem; color: var(--deep);
+  }
+  .polaroid.wide { width: 100%; transform: rotate(0); }
+  .polaroid.wide .box { aspect-ratio: 16 / 10; }
+  .polaroid.small { width: min(100%, 11rem); }
+
+  .gallery { display: grid; grid-template-columns: 1fr 1fr; gap: .4rem .8rem; margin-top: 1rem; }
+  .gallery figure { margin: 0; width: 100%; }
+  .gallery .polaroid { margin: .6rem 0; }
+  .gallery .full { grid-column: 1 / -1; }
+
+  .sign { font-family: "Caveat", cursive; font-size: 1.8rem; color: var(--deep); text-align: right; margin: 0; }
+  .big-love { font-family: "Caveat", cursive; font-size: 2.6rem; color: var(--rose); text-align: center; margin: 1.4rem 0 0; }
+
+  .btn {
+    font-family: "Caveat", cursive; font-weight: 700; font-size: 1.7rem;
+    background: var(--rose); color: #fff; border: 0; border-radius: 999px;
+    padding: .5rem 1.8rem; cursor: pointer; display: block; margin: 1.6rem auto 0;
+    box-shadow: 0 .3rem 0 var(--deep);
+  }
+  .btn:active { transform: translateY(2px); box-shadow: 0 .1rem 0 var(--deep); }
+  .btn:focus-visible, .nav button:focus-visible, .dots button:focus-visible { outline: 3px solid var(--deep); outline-offset: 3px; }
+
+  .nav {
+    position: fixed; left: 0; right: 0; bottom: 0; padding: .7rem 1rem;
+    display: flex; justify-content: center; align-items: center; gap: 1rem;
+    background: rgba(255,250,244,.92); backdrop-filter: blur(6px);
+  }
+  .nav button.arrow {
+    font-family: "Caveat", cursive; font-size: 1.5rem; font-weight: 700;
+    background: none; border: 2px solid var(--rose); color: var(--deep);
+    border-radius: 999px; padding: .1rem 1rem; cursor: pointer;
+  }
+  .nav button.arrow[disabled] { opacity: .3; cursor: default; }
+  .dots { display: flex; gap: .5rem; }
+  .dots button {
+    width: .8rem; height: .8rem; border-radius: 50%; border: 0; padding: 0;
+    background: var(--line); cursor: pointer;
+  }
+  .dots button.on { background: var(--rose); transform: scale(1.3); }
+</style>
+</head>
+<body>
+<div class="hearts" id="hearts" aria-hidden="true"></div>
+
+<main class="book">
+
+  <!-- PAGE 1 -->
+  <section class="page on" aria-label="Page 1">
+    <p class="tag">page 1</p>
+    <h1>To my baby,</h1>
+    <p class="plea">“Please forgive me”</p>
+
+    <!-- OUR PICTURE: save it as photos/us.jpeg -->
+    <figure class="polaroid" style="margin-top:0">
+      <div class="box"><span class="ph">our picture goes here</span><img src="photos/us.jpeg" alt="Us together" onerror="this.remove()"></div>
+      <figcaption>us</figcaption>
+    </figure>
+
+    <button class="btn" data-go="1">Start the journey</button>
+  </section>
+
+  <!-- PAGE 2 -->
+  <section class="page" aria-label="Page 2">
+    <p class="tag">page 2</p>
+    <div class="lined">
+      <p>We’ve known each other for a while now, and throughout that time, you’ve become such an important part of my life. I want you to know that I genuinely appreciate having you in my life and I have never taken your presence, love, time or everything you do for me for granted.</p>
+    </div>
+    <!-- photo: photos/page2.jpeg -->
+    <figure class="polaroid small">
+      <div class="box"><span class="ph">a photo of us</span><img src="photos/page2.jpeg" alt="" onerror="this.remove()"></div>
+      <figcaption>us</figcaption>
+    </figure>
+  </section>
+
+  <!-- PAGE 3 -->
+  <section class="page" aria-label="Page 3">
+    <p class="tag">page 3</p>
+    <div class="lined">
+      <p>I might have not shown it in the best way but that doesn’t mean I don’t see or value you. I genuinely appreciate you being part of my life and loving me.</p>
+    </div>
+    <!-- photo: photos/page3.jpeg -->
+    <figure class="polaroid small">
+      <div class="box"><span class="ph">a photo of us</span><img src="photos/page3.jpeg" alt="" onerror="this.remove()"></div>
+      <figcaption>you</figcaption>
+    </figure>
+  </section>
+
+  <!-- PAGE 4 -->
+  <section class="page" aria-label="Page 4">
+    <p class="tag">page 4</p>
+    <div class="lined">
+      <p>I am truly sorry for the things I’ve done that may have hurt you. I wish I could take back the moments I’ve handled badly but all I can do is sincerely apologize and let you know how much you mean to me.</p>
+      <p>I don’t want you to ever feel like having you in my life is something I take lightly. I appreciate you and I’m deeply sorry. Remember our plans to wear matching pajamas this year and all we were to do.</p>
+    </div>
+    <p class="sign">Stacy ♡</p>
+    <!-- photo: photos/page4.jpeg -->
+    <figure class="polaroid small">
+      <div class="box"><span class="ph">a photo of us</span><img src="photos/page4.jpeg" alt="" onerror="this.remove()"></div>
+      <figcaption>always</figcaption>
+    </figure>
+  </section>
+
+  <!-- PAGE 5 -->
+  <section class="page" aria-label="Page 5">
+    <p class="tag">page 5</p>
+    <h2>Moments</h2>
+
+    <div class="gallery">
+      <!-- PHOTOS: photos/moment1.jpeg ... moment4.jpeg -->
+      <figure class="polaroid"><div class="box"><span class="ph">photo 1</span><img src="photos/moment1.jpeg" alt="" onerror="this.remove()"></div></figure>
+      <figure class="polaroid"><div class="box"><span class="ph">photo 2</span><img src="photos/moment2.jpeg" alt="" onerror="this.remove()"></div></figure>
+      <figure class="polaroid"><div class="box"><span class="ph">photo 3</span><img src="photos/moment3.jpeg" alt="" onerror="this.remove()"></div></figure>
+      <figure class="polaroid"><div class="box"><span class="ph">photo 4</span><img src="photos/moment4.jpeg" alt="" onerror="this.remove()"></div></figure>
+
+      <!-- VIDEOS: videos/video1.mp4, videos/video2.mp4 -->
+      <figure class="polaroid wide full"><div class="box"><span class="ph">our video goes here</span><video controls playsinline preload="metadata" src="videos/video1.mp4" onerror="this.remove()"></video></div></figure>
+      <figure class="polaroid wide full"><div class="box"><span class="ph">another video</span><video controls playsinline preload="metadata" src="videos/video2.mp4" onerror="this.remove()"></video></div></figure>
+    </div>
+
+    <p class="big-love">I love you, baby ♡</p>
+  </section>
+</main>
+
+<nav class="nav" aria-label="Pages">
+  <button class="arrow" id="prev" type="button">back</button>
+  <div class="dots" id="dots"></div>
+  <button class="arrow" id="next" type="button">next</button>
+</nav>
+
+<script>
+  var pages = document.querySelectorAll(".page");
+  var dotsBox = document.getElementById("dots");
+  var prev = document.getElementById("prev");
+  var next = document.getElementById("next");
+  var cur = 0;
+
+  pages.forEach(function (_, i) {
+    var d = document.createElement("button");
+    d.type = "button";
+    d.setAttribute("aria-label", "Go to page " + (i + 1));
+    d.addEventListener("click", function () { show(i); });
+    dotsBox.appendChild(d);
+  });
+
+  function show(i) {
+    cur = Math.max(0, Math.min(pages.length - 1, i));
+    pages.forEach(function (p, n) { p.classList.toggle("on", n === cur); });
+    Array.prototype.forEach.call(dotsBox.children, function (d, n) { d.classList.toggle("on", n === cur); });
+    prev.disabled = cur === 0;
+    next.disabled = cur === pages.length - 1;
+    window.scrollTo({ top: 0 });
+    history.replaceState(null, "", "#page" + (cur + 1));
+  }
+
+  prev.addEventListener("click", function () { show(cur - 1); });
+  next.addEventListener("click", function () { show(cur + 1); });
+  document.querySelectorAll("[data-go]").forEach(function (b) {
+    b.addEventListener("click", function () { show(parseInt(b.dataset.go, 10)); });
+  });
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "ArrowRight") show(cur + 1);
+    if (e.key === "ArrowLeft") show(cur - 1);
+  });
+  var x0 = null;
+  document.addEventListener("touchstart", function (e) { x0 = e.touches[0].clientX; }, { passive: true });
+  document.addEventListener("touchend", function (e) {
+    if (x0 === null) return;
+    var dx = e.changedTouches[0].clientX - x0;
+    if (Math.abs(dx) > 70) show(cur + (dx < 0 ? 1 : -1));
+    x0 = null;
+  }, { passive: true });
+
+  // soft floating hearts
+  var hb = document.getElementById("hearts");
+  for (var h = 0; h < 14; h++) {
+    var s = document.createElement("span");
+    s.textContent = "♥";
+    s.style.left = Math.random() * 100 + "%";
+    s.style.fontSize = (0.8 + Math.random() * 1.2) + "rem";
+    s.style.animationDuration = (12 + Math.random() * 14) + "s";
+    s.style.animationDelay = (-Math.random() * 20) + "s";
+    hb.appendChild(s);
+  }
+
+  var start = parseInt((location.hash || "").replace("#page", ""), 10);
+  show(isNaN(start) ? 0 : start - 1);
+</script>
+</body>
+</html>
