@@ -9,20 +9,19 @@
 <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Nunito:wght@400;600&display=swap" rel="stylesheet">
 <style>
   :root {
-    --blush: #fde9ec;
-    --rose: #d9667f;
-    --deep: #7a2a43;
-    --paper: #fffaf4;
-    --line: #f0cfd5;
-    --green: #2f5d46;
-    --ink: #4a2a35;
+    --black: #0b0a08;
+    --charcoal: #16130f;
+    --gold: #d4af37;
+    --gold-light: #f0d98a;
+    --gold-dim: #5c4a1a;
+    --cream: #f6ecd0;
     --lh: 2.3rem;
   }
   * { box-sizing: border-box; }
   html, body { margin: 0; min-height: 100%; }
   body {
-    background: radial-gradient(circle at 20% 10%, #fff3f5 0, var(--blush) 55%, #f9d5dc 100%);
-    color: var(--ink);
+    background: radial-gradient(circle at 20% 10%, #231d12 0, #0f0d09 55%, #000 100%);
+    color: var(--cream);
     font-family: "Nunito", system-ui, sans-serif;
     min-height: 100vh;
     display: flex;
@@ -32,7 +31,7 @@
   }
   .hearts { position: fixed; inset: 0; pointer-events: none; overflow: hidden; }
   .hearts span {
-    position: absolute; bottom: -2rem; color: var(--rose); opacity: .35;
+    position: absolute; bottom: -2rem; color: var(--gold); opacity: .3;
     animation: rise linear infinite;
   }
   @keyframes rise { to { transform: translateY(-110vh) rotate(20deg); opacity: 0; } }
@@ -40,16 +39,16 @@
 
   .book {
     position: relative; width: 100%; max-width: 32rem;
-    background: var(--paper);
-    border-left: 1.1rem solid var(--green);
+    background: var(--charcoal);
+    border-left: 1.1rem solid var(--gold);
     border-radius: .4rem 1.2rem 1.2rem .4rem;
-    box-shadow: 0 .8rem 2rem rgba(122,42,67,.18);
+    box-shadow: 0 .8rem 2rem rgba(0,0,0,.7), 0 0 0 1px var(--gold-dim);
     padding: 1.6rem 1.4rem 2rem;
     align-self: flex-start;
   }
   .book::after { /* bookmark ribbon */
     content: ""; position: absolute; top: -.2rem; right: 1.6rem;
-    width: .9rem; height: 3rem; background: var(--rose);
+    width: .9rem; height: 3rem; background: var(--gold-light);
     clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 80%, 0 100%);
   }
   .page { display: none; }
@@ -57,40 +56,39 @@
   @keyframes turn { from { opacity: 0; transform: translateX(14px); } to { opacity: 1; transform: none; } }
   @media (prefers-reduced-motion: reduce) { .page.on { animation: none; } }
 
-  .tag { font-family: "Caveat", cursive; color: var(--rose); font-size: 1.4rem; margin: 0 0 .2rem; }
   h1, h2 {
-    font-family: "Caveat", cursive; font-weight: 700; color: var(--deep);
+    font-family: "Caveat", cursive; font-weight: 700; color: var(--gold);
     line-height: 1; margin: 0 0 1rem;
   }
   h1 { font-size: clamp(3.2rem, 15vw, 4.6rem); }
   h2 { font-size: 2.6rem; }
   .plea {
-    font-family: "Caveat", cursive; font-size: 2.3rem; color: var(--rose);
+    font-family: "Caveat", cursive; font-size: 2.3rem; color: var(--gold-light);
     margin: 0 0 1.4rem;
   }
 
   .lined {
     font-family: "Caveat", cursive; font-weight: 500; font-size: 1.65rem;
-    line-height: var(--lh); color: var(--ink);
-    background: repeating-linear-gradient(transparent 0, transparent calc(var(--lh) - 1px), var(--line) calc(var(--lh) - 1px), var(--line) var(--lh));
-    margin: 1rem 0 1.4rem; padding: 0 .2rem;
+    line-height: var(--lh); color: var(--cream);
+    background: repeating-linear-gradient(transparent 0, transparent calc(var(--lh) - 1px), var(--gold-dim) calc(var(--lh) - 1px), var(--gold-dim) var(--lh));
+    margin: .4rem 0 1.4rem; padding: 0 .2rem;
   }
   .lined p { margin: 0; }
   .lined p + p { margin-top: var(--lh); }
 
   /* photo and video slots */
   .polaroid {
-    position: relative; background: #fff; padding: .6rem .6rem 2.2rem;
-    box-shadow: 0 .3rem .9rem rgba(122,42,67,.2); border-radius: .2rem;
+    position: relative; background: var(--cream); padding: .6rem .6rem 2.2rem;
+    box-shadow: 0 .3rem .9rem rgba(0,0,0,.6), 0 0 0 1px var(--gold); border-radius: .2rem;
     width: min(100%, 15rem); margin: 1rem auto; transform: rotate(-2deg);
   }
   .polaroid:nth-child(even) { transform: rotate(2deg); }
   .polaroid .box {
-    position: relative; aspect-ratio: 1; background: var(--blush);
+    position: relative; aspect-ratio: 1; background: #26200f;
     display: grid; place-items: center; overflow: hidden;
   }
   .polaroid .ph {
-    font-family: "Caveat", cursive; font-size: 1.3rem; color: var(--rose);
+    font-family: "Caveat", cursive; font-size: 1.3rem; color: var(--gold);
     text-align: center; padding: .6rem;
   }
   .polaroid img, .polaroid video {
@@ -98,7 +96,7 @@
   }
   .polaroid figcaption {
     position: absolute; left: 0; right: 0; bottom: .45rem; text-align: center;
-    font-family: "Caveat", cursive; font-size: 1.3rem; color: var(--deep);
+    font-family: "Caveat", cursive; font-size: 1.3rem; color: #3a2d0f;
   }
   .polaroid.wide { width: 100%; transform: rotate(0); }
   .polaroid.wide .box { aspect-ratio: 16 / 10; }
@@ -109,35 +107,36 @@
   .gallery .polaroid { margin: .6rem 0; }
   .gallery .full { grid-column: 1 / -1; }
 
-  .sign { font-family: "Caveat", cursive; font-size: 1.8rem; color: var(--deep); text-align: right; margin: 0; }
-  .big-love { font-family: "Caveat", cursive; font-size: 2.6rem; color: var(--rose); text-align: center; margin: 1.4rem 0 0; }
+  .sign { font-family: "Caveat", cursive; font-size: 1.8rem; color: var(--gold); text-align: right; margin: 0; }
+  .big-love { font-family: "Caveat", cursive; font-size: 2.6rem; color: var(--gold); text-align: center; margin: 1.4rem 0 0; }
 
   .btn {
     font-family: "Caveat", cursive; font-weight: 700; font-size: 1.7rem;
-    background: var(--rose); color: #fff; border: 0; border-radius: 999px;
+    background: var(--gold); color: var(--black); border: 0; border-radius: 999px;
     padding: .5rem 1.8rem; cursor: pointer; display: block; margin: 1.6rem auto 0;
-    box-shadow: 0 .3rem 0 var(--deep);
+    box-shadow: 0 .3rem 0 #7a5f12;
   }
-  .btn:active { transform: translateY(2px); box-shadow: 0 .1rem 0 var(--deep); }
-  .btn:focus-visible, .nav button:focus-visible, .dots button:focus-visible { outline: 3px solid var(--deep); outline-offset: 3px; }
+  .btn:active { transform: translateY(2px); box-shadow: 0 .1rem 0 #7a5f12; }
+  .btn:focus-visible, .nav button:focus-visible, .dots button:focus-visible { outline: 3px solid var(--gold-light); outline-offset: 3px; }
 
   .nav {
     position: fixed; left: 0; right: 0; bottom: 0; padding: .7rem 1rem;
     display: flex; justify-content: center; align-items: center; gap: 1rem;
-    background: rgba(255,250,244,.92); backdrop-filter: blur(6px);
+    background: rgba(11,10,8,.92); backdrop-filter: blur(6px);
+    border-top: 1px solid var(--gold-dim);
   }
   .nav button.arrow {
     font-family: "Caveat", cursive; font-size: 1.5rem; font-weight: 700;
-    background: none; border: 2px solid var(--rose); color: var(--deep);
+    background: none; border: 2px solid var(--gold); color: var(--gold-light);
     border-radius: 999px; padding: .1rem 1rem; cursor: pointer;
   }
   .nav button.arrow[disabled] { opacity: .3; cursor: default; }
   .dots { display: flex; gap: .5rem; }
   .dots button {
     width: .8rem; height: .8rem; border-radius: 50%; border: 0; padding: 0;
-    background: var(--line); cursor: pointer;
+    background: var(--gold-dim); cursor: pointer;
   }
-  .dots button.on { background: var(--rose); transform: scale(1.3); }
+  .dots button.on { background: var(--gold); transform: scale(1.3); }
 </style>
 </head>
 <body>
@@ -147,12 +146,11 @@
 
   <!-- PAGE 1 -->
   <section class="page on" aria-label="Page 1">
-    <p class="tag">page 1</p>
     <h1>To my baby,</h1>
     <p class="plea">“Please forgive me”</p>
 
     <!-- OUR PICTURE: save it as photos/us.jpeg -->
-    <figure class="polaroid" style="margin-top:0">
+    <figure class="polaroid" style="margin-top:.4rem">
       <div class="box"><span class="ph">our picture goes here</span><img src="photos/us.jpeg" alt="Us together" onerror="this.remove()"></div>
       <figcaption>us</figcaption>
     </figure>
@@ -162,7 +160,6 @@
 
   <!-- PAGE 2 -->
   <section class="page" aria-label="Page 2">
-    <p class="tag">page 2</p>
     <div class="lined">
       <p>We’ve known each other for a while now, and throughout that time, you’ve become such an important part of my life. I want you to know that I genuinely appreciate having you in my life and I have never taken your presence, love, time or everything you do for me for granted.</p>
     </div>
@@ -175,7 +172,6 @@
 
   <!-- PAGE 3 -->
   <section class="page" aria-label="Page 3">
-    <p class="tag">page 3</p>
     <div class="lined">
       <p>I might have not shown it in the best way but that doesn’t mean I don’t see or value you. I genuinely appreciate you being part of my life and loving me.</p>
     </div>
@@ -188,12 +184,11 @@
 
   <!-- PAGE 4 -->
   <section class="page" aria-label="Page 4">
-    <p class="tag">page 4</p>
     <div class="lined">
       <p>I am truly sorry for the things I’ve done that may have hurt you. I wish I could take back the moments I’ve handled badly but all I can do is sincerely apologize and let you know how much you mean to me.</p>
-      <p>I don’t want you to ever feel like having you in my life is something I take lightly. I appreciate you and I’m deeply sorry. Remember our plans to wear matching pajamas this year and all we were to do.</p>
+      <p>I don’t want you to ever feel like having you in my life is something I take lightly. I appreciate you and I’m deeply sorry. Remember all our plans including matching pajamas</p>
     </div>
-    <p class="sign">Stacy ♡</p>
+    <p class="sign">Your Stacy ♡</p>
     <!-- photo: photos/page4.jpeg -->
     <figure class="polaroid small">
       <div class="box"><span class="ph">a photo of us</span><img src="photos/page4.jpeg" alt="" onerror="this.remove()"></div>
@@ -203,7 +198,6 @@
 
   <!-- PAGE 5 -->
   <section class="page" aria-label="Page 5">
-    <p class="tag">page 5</p>
     <h2>Moments</h2>
 
     <div class="gallery">
